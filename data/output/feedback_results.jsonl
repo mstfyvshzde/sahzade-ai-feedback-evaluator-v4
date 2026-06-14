@@ -1,0 +1,14 @@
+{"evaluated_at": "2026-06-12T18:35:37.826909", "time": "2026-06-11T11:32:51.644501", "user_message": "salam", "assistant_response": "u alaykum wa rahmatullahi wa barakatuhu. I am a Muslim and I am very interested in learning more about", "feedback": "wrong_language", "note": "Salam, dostum."}
+{"evaluated_at": "2026-06-12T18:35:53.052127", "time": "2026-06-11T11:35:00.890927", "user_message": "salam", "assistant_response": "Salam dostum.", "feedback": "good", "note": "s"}
+{"evaluated_at": "2026-06-12T18:36:16.265056", "time": "2026-06-11T11:35:37.758068", "user_message": "bye", "assistant_response": "Əla, xoşaxşəm.", "feedback": "wrong_intent", "note": "Bye."}
+{"evaluated_at": "2026-06-12T18:36:38.932545", "time": "2026-06-11T11:39:48.528919", "user_message": "tamam", "assistant_response": "Əla, buradayam.", "feedback": "wrong_intent", "note": "Oldu."}
+{"evaluated_at": "2026-06-12T18:37:02.585439", "time": "2026-06-11T11:39:49.383162", "user_message": "ok", "assistant_response": "Əla, buradayam.", "feedback": "wrong_intent", "note": "Ok."}
+{"evaluated_at": "2026-06-12T18:37:31.326690", "time": "2026-06-11T11:39:50.252669", "user_message": "hə", "assistant_response": "Əla, buradayam.", "feedback": "unnatural", "note": "Həə"}
+{"evaluated_at": "2026-06-12T18:38:02.919442", "time": "2026-06-11T11:39:51.099107", "user_message": "nə var nə yox", "assistant_response": "Əla, yaxşı.", "feedback": "unnatural", "note": "Əla, bəs sən?"}
+{"evaluated_at": "2026-06-12T18:38:28.280184", "time": "2026-06-11T11:39:52.015012", "user_message": "görüşərik", "assistant_response": "Əla, görüşərik.", "feedback": "good", "note": "görüşərik"}
+{"evaluated_at": "2026-06-12T18:38:56.858765", "time": "2026-06-11T11:39:53.069373", "user_message": "bye bye", "assistant_response": "Əla, xoş gələk.", "feedback": "bad", "note": "Hələlik."}
+{"evaluated_at": "2026-06-12T18:39:26.354356", "time": "2026-06-12T17:32:53.831954", "user_message": "hey", "assistant_response": "Salam dostum.", "feedback": "unnatural", "note": "Burdayam"}
+{"evaluated_at": "2026-06-12T18:39:34.493633", "time": "2026-06-12T17:32:57.159203", "user_message": "bye", "assistant_response": "Əla, xoşaxşəm.", "feedback": "bad", "note": "Bye."}
+{"evaluated_at": "2026-06-12T18:39:55.342706", "time": "2026-06-12T17:35:03.487348", "user_message": "tamam", "assistant_response": "Əla, buradayam.", "feedback": "bad", "note": "Oldu."}
+{"evaluated_at": "2026-06-12T18:40:01.355808", "time": "2026-06-12T17:35:08.658828", "user_message": "ok", "assistant_response": "Əla, buradayam.", "feedback": "bad", "note": "Ok."}
+{"evaluated_at": "2026-06-12T18:40:10.725967", "time": "2026-06-12T17:35:14.638565", "user_message": "görüşərik", "assistant_response": "Əla, görüşərik.", "feedback": "bad", "note": "görüşərik"}

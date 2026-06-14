@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-06-14T09:27:13.363845",
+  "total_evaluated": 14,
+  "good_count": 2,
+  "issue_count": 12,
+  "good_rate_percent": 14.29,
+  "label_counts": {
+    "wrong_language": 1,
+    "good": 2,
+    "wrong_intent": 3,
+    "unnatural": 3,
+    "bad": 5
+  },
+  "main_issues": {
+    "generic": 0,
+    "wrong_language": 1,
+    "unnatural": 3,
+    "wrong_intent": 3,
+    "repetitive": 0,
+    "bad": 5
+  }
+}
