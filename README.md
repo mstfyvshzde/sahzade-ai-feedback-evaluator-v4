@@ -1,61 +1,62 @@
-# Sahzade AI — Feedback Evaluator V4
+# Sahzade AI Feedback Evaluator V4
+
+A lightweight feedback and evaluation tool for the Sahzade AI local assistant.
 
 ## Overview
 
-**Sahzade AI Feedback Evaluator V4** is a small evaluation tool for the Sahzade AI local assistant project.
+Sahzade AI Feedback Evaluator V4 is the fourth step of the Sahzade AI project.
 
-In previous versions:
+In earlier versions, the assistant was fine-tuned, served through a local API, and connected to a simple chat interface.
+In V4, the focus is on evaluating assistant responses and identifying weak response patterns.
+
+The goal of this project is to create a simple feedback workflow that helps improve the assistant over time.
+
+## Project Goals
+
+* Read saved chat logs from the local assistant API
+* Show user and assistant messages one by one
+* Allow manual feedback labeling
+* Save feedback results in JSONL format
+* Generate a simple evaluation report
+* Detect common response problems
+* Prepare better data for future improvements
+
+## What This Version Includes
+
+* Chat log reader
+* Manual response evaluator
+* Feedback label system
+* Feedback result saving
+* Evaluation report generator
+* Local JSONL-based workflow
+* Simple terminal-based usage
+
+## What This Version Does Not Include
+
+* Automatic AI-based grading
+* Web interface
+* Database storage
+* Model retraining
+* Production monitoring
+* Advanced analytics dashboard
+
+These features can be added in later versions.
+
+## Feedback Labels
+
+The evaluator supports these labels:
 
 ```text
-V1 → LoRA fine-tuning experiment
-V2 → Local FastAPI chat API
-V3 → Browser-based chat UI
+good
+bad
+generic
+wrong_language
+unnatural
+wrong_intent
+repetitive
 ```
 
-V4 focuses on evaluating the assistant responses.
-
-The goal of this project is to read saved chat logs, manually label the quality of each assistant response, save feedback results, and generate a simple evaluation report.
-
----
-
-## Project Goal
-
-The main goal of this project is to create a lightweight feedback system that can:
-
-* read chat logs from the V2 API
-* show user and assistant messages one by one
-* allow manual feedback labeling
-* save feedback results into JSONL format
-* generate an evaluation report
-* identify weak response patterns
-* support future dataset improvement
-
-This project helps understand which responses are good and which responses need improvement.
-
----
-
-## Project Scope
-
-This version includes:
-
-* chat log reader
-* manual response evaluator
-* feedback label system
-* feedback result saving
-* evaluation report generation
-* shell scripts for running the evaluator
-* local JSONL-based workflow
-
-This version does **not** include:
-
-* automatic AI-based grading
-* web interface
-* database storage
-* model retraining
-* production monitoring system
-* advanced analytics dashboard
-
----
+These labels help identify whether an assistant response is useful, natural, relevant, and consistent with the expected style.
 
 ## Project Structure
 
@@ -84,36 +85,19 @@ sahzade-ai-feedback-evaluator-v4/
 └── .gitignore
 ```
 
----
-
 ## Main Components
 
 ### `src/config.py`
 
-Stores project paths and feedback labels.
+Stores project paths and available feedback labels.
 
 Main responsibilities:
 
-* define base project directory
-* define input and output paths
-* define chat logs path
-* define feedback results path
-* define evaluation report path
-* define available feedback labels
-
-Feedback labels:
-
-```text
-1 → good
-2 → bad
-3 → generic
-4 → wrong_language
-5 → unnatural
-6 → wrong_intent
-7 → repetitive
-```
-
----
+* Define input and output paths
+* Define chat log path
+* Define feedback result path
+* Define evaluation report path
+* Store feedback label options
 
 ### `src/evaluator.py`
 
@@ -121,11 +105,11 @@ Reads chat logs and allows manual feedback labeling.
 
 Main responsibilities:
 
-* load `chat_logs.jsonl`
-* show each conversation sample
-* ask the user to choose a feedback label
-* optionally collect a note
-* save feedback into `feedback_results.jsonl`
+* Load `chat_logs.jsonl`
+* Show each conversation sample
+* Ask the evaluator to choose a feedback label
+* Optionally collect a short note
+* Save feedback into `feedback_results.jsonl`
 
 Example feedback result:
 
@@ -140,20 +124,17 @@ Example feedback result:
 }
 ```
 
----
-
 ### `src/report.py`
 
-Reads the feedback results and creates a summary report.
+Reads feedback results and creates a summary report.
 
 Main responsibilities:
 
-* load `feedback_results.jsonl`
-* count feedback labels
-* calculate good response rate
-* count issue responses
-* save report into `evaluation_report.json`
-* print report summary in the terminal
+* Count feedback labels
+* Calculate good response rate
+* Count issue responses
+* Save the evaluation report
+* Print a summary in the terminal
 
 Example report structure:
 
@@ -172,259 +153,59 @@ Example report structure:
 }
 ```
 
----
-
-### `scripts/copy_logs.sh`
-
-Copies chat logs from the V2 API project into this project.
-
-Source:
-
-```text
-sahzade-ai-local-chat-mini (v2)/logs/chat_logs.jsonl
-```
-
-Target:
-
-```text
-data/input/chat_logs.jsonl
-```
-
----
-
-### `scripts/run_evaluator.sh`
-
-Starts the manual evaluator.
-
-```bash
-./scripts/run_evaluator.sh
-```
-
----
-
-## Requirements
-
-This project uses only Python standard library modules:
-
-```text
-json
-pathlib
-datetime
-collections
-```
-
-No external Python package is required.
-
-The `requirements.txt` file can stay empty for this version.
-
----
-
 ## How to Run
 
-### 1. Copy V2 chat logs
+### 1. Copy chat logs
 
 ```bash
 chmod +x scripts/copy_logs.sh
 ./scripts/copy_logs.sh
 ```
 
-This copies the V2 API chat logs into:
-
-```text
-data/input/chat_logs.jsonl
-```
-
----
-
-### 2. Run the feedback evaluator
+### 2. Start the evaluator
 
 ```bash
 chmod +x scripts/run_evaluator.sh
 ./scripts/run_evaluator.sh
 ```
 
-The evaluator shows each sample like this:
+### 3. Check output files
+
+Feedback results:
 
 ```text
-User: salam
-Assistant: Salam dostum.
-
-Feedback labels:
-1. good
-2. bad
-3. generic
-4. wrong_language
-5. unnatural
-6. wrong_intent
-7. repetitive
-s. skip
-q. quit
+data/output/feedback_results.jsonl
 ```
 
-Choose a label by typing only the number:
-
-```text
-1
-```
-
-You can also add an optional note.
-
----
-
-### 3. Generate evaluation report
-
-```bash
-python3 src/report.py
-```
-
-The report will be saved to:
+Evaluation report:
 
 ```text
 data/output/evaluation_report.json
 ```
 
----
-
-## Output Files
-
-### `feedback_results.jsonl`
-
-Stores manually labeled response evaluations.
-
-Each line is one evaluated sample.
-
-Example:
-
-```json
-{"user_message":"salam","assistant_response":"Salam dostum.","feedback":"good","note":"Short and correct greeting."}
-```
-
----
-
-### `evaluation_report.json`
-
-Stores the final summary report.
-
-It includes:
-
-* total evaluated samples
-* number of good responses
-* number of issue responses
-* good response percentage
-* feedback label counts
-* main issue counts
-
----
-
-## Feedback Label Meaning
-
-| Label            | Meaning                                     |
-| ---------------- | ------------------------------------------- |
-| `good`           | The response is correct and natural         |
-| `bad`            | The response is generally poor              |
-| `generic`        | The response is acceptable but too general  |
-| `wrong_language` | The response uses the wrong language        |
-| `unnatural`      | The response sounds unnatural               |
-| `wrong_intent`   | The response misunderstands the user intent |
-| `repetitive`     | The response repeats too much               |
-
----
-
-## Example Evaluation
-
-| User Message | Assistant Response           | Feedback         | Note                        |
-| ------------ | ---------------------------- | ---------------- | --------------------------- |
-| `salam`      | `Salam dostum.`              | `good`           | Short and correct           |
-| `ok`         | `Əla, buradayam.`            | `generic`        | Repeated response           |
-| `bye`        | `Əla, xoşaxşəm.`             | `unnatural`      | Goodbye response is weak    |
-| `salam`      | Long wrong-language response | `wrong_language` | Wrong language and too long |
-
----
-
 ## Why This Project Matters
 
-This project is important because fine-tuning alone is not enough.
+Fine-tuning and building an assistant is not enough by itself.
 
-A local assistant also needs:
+A useful AI assistant also needs:
 
-* testing
+* response testing
+* quality evaluation
 * feedback collection
-* response quality evaluation
-* weak point detection
-* dataset improvement planning
+* weak pattern detection
+* better data for future training
 
-V4 creates a simple feedback loop for improving future Sahzade AI versions.
-
----
-
-## Main Pipeline
-
-```text
-V2 chat logs
-    ↓
-copy_logs.sh
-    ↓
-data/input/chat_logs.jsonl
-    ↓
-manual evaluator
-    ↓
-feedback_results.jsonl
-    ↓
-report.py
-    ↓
-evaluation_report.json
-```
-
----
-
-## Current Status
-
-```text
-Status: Completed as V4 feedback evaluation experiment
-```
-
-This version successfully adds a simple manual evaluation workflow to the Sahzade AI project.
-
----
-
-## Limitations
-
-This version is intentionally simple.
-
-Main limitations:
-
-* manual labeling only
-* no web dashboard
-* no automatic grading
-* no database
-* no chart visualization
-* no direct retraining pipeline
-* no advanced metrics like precision or recall
-
----
+This project adds the first simple evaluation layer to the Sahzade AI system.
 
 ## Future Improvements
 
-Possible next improvements:
+* Add more detailed feedback labels
+* Add better reporting
+* Add automatic issue detection
+* Add a small dashboard
+* Connect feedback results to future dataset improvement
+* Use feedback data for later fine-tuning experiments
 
-* add automatic evaluation rules
-* add charts for feedback distribution
-* create a small dashboard
-* convert bad responses into new training examples
-* generate improved dataset samples
-* connect evaluation results to the next LoRA training dataset
-* add RAG evaluation later
-* add tool-use evaluation later
+## Project Status
 
----
-
-## Version Summary
-
-```text
-V1 → Fine-tuned LoRA adapter
-V2 → Served adapter through FastAPI
-V3 → Built browser chat UI
-V4 → Added feedback and evaluation system
-```
-
-Sahzade AI Feedback Evaluator V4 is a small but important step toward improving assistant quality through real testing and structured feedback.
+Completed as V4 feedback evaluation experiment.
